@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -14,9 +14,11 @@ const AdminLogin = () => {
   const { login, isAdmin } = useAuth();
   const navigate = useNavigate();
 
-  if (isAdmin) {
-    navigate("/admin/orders");
-  }
+  useEffect(() => {
+    if (isAdmin) {
+      navigate("/admin/orders");
+    }
+  }, [isAdmin, navigate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
