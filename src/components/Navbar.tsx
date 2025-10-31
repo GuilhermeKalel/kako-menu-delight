@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Menu, X, ShoppingCart, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface NavbarProps {
@@ -9,6 +10,7 @@ interface NavbarProps {
 
 const Navbar = ({ cartItemCount = 0, onCartClick }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -52,6 +54,13 @@ const Navbar = ({ cartItemCount = 0, onCartClick }: NavbarProps) => {
             <Button
               variant="ghost"
               size="icon"
+              onClick={() => navigate("/admin/login")}
+            >
+              <Lock className="h-5 w-5" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
               className="relative"
               onClick={onCartClick}
             >
@@ -66,6 +75,13 @@ const Navbar = ({ cartItemCount = 0, onCartClick }: NavbarProps) => {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate("/admin/login")}
+            >
+              <Lock className="h-5 w-5" />
+            </Button>
             <Button
               variant="ghost"
               size="icon"

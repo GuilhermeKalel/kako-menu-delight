@@ -26,6 +26,21 @@ const Cart = ({ items, onUpdateQuantity, onRemoveItem, onClose, onCheckout }: Ca
       toast.error("Seu carrinho está vazio!");
       return;
     }
+
+    // Salvar pedido no localStorage
+    const order = {
+      id: Date.now().toString(),
+      items: items,
+      total: total,
+      status: "pending" as const,
+      createdAt: new Date().toISOString(),
+    };
+
+    const savedOrders = localStorage.getItem("orders");
+    const orders = savedOrders ? JSON.parse(savedOrders) : [];
+    orders.unshift(order);
+    localStorage.setItem("orders", JSON.stringify(orders));
+
     onCheckout();
     toast.success("Pedido finalizado com sucesso!");
   };
