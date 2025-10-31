@@ -35,13 +35,17 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
       return;
     }
 
-    // Criar mensagem para WhatsApp
-    const whatsappMessage = `*Novo Contato - KakoMenu*%0A%0A*Nome:* ${encodeURIComponent(formData.name)}%0A*Email:* ${encodeURIComponent(formData.email)}%0A*Telefone:* ${encodeURIComponent(formData.phone || "Não informado")}%0A*Mensagem:* ${encodeURIComponent(formData.message)}`;
+    // Validar email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Por favor, insira um email válido!");
+      return;
+    }
+
+    // Simular envio de dados
+    console.log("Dados de contato recebidos:", formData);
     
-    // Abrir WhatsApp
-    window.open(`https://wa.me/5511999999999?text=${whatsappMessage}`, "_blank");
-    
-    toast.success("Redirecionando para o WhatsApp!");
+    toast.success("Mensagem enviada! Entraremos em contato em breve.");
     
     // Limpar formulário e fechar
     setFormData({ name: "", email: "", phone: "", message: "" });
@@ -56,7 +60,7 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
             Entre em Contato
           </DialogTitle>
           <DialogDescription>
-            Preencha o formulário abaixo e entraremos em contato via WhatsApp
+            Preencha o formulário abaixo e entraremos em contato em breve
           </DialogDescription>
         </DialogHeader>
 
@@ -109,7 +113,7 @@ const ContactForm = ({ isOpen, onClose }: ContactFormProps) => {
 
           <Button type="submit" className="w-full" size="lg">
             <Send className="mr-2 h-4 w-4" />
-            Enviar via WhatsApp
+            Enviar Mensagem
           </Button>
         </form>
       </DialogContent>
