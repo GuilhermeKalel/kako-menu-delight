@@ -6,8 +6,7 @@ import MenuSection from "@/components/MenuSection";
 import Cart, { CartItem } from "@/components/Cart";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
-import { MenuItem } from "@/components/MenuSection";
-import { Toaster } from "@/components/ui/sonner";
+import type { MenuItem } from "@/components/MenuSection";
 
 const Index = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -66,8 +65,6 @@ const Index = () => {
           onCheckout={handleCheckout}
         />
       )}
-      
-      <Toaster />
     </div>
   );
 };
