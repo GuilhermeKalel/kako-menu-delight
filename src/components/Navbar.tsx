@@ -1,107 +1,114 @@
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { useState } from "react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+interface NavbarProps {
+  cartItemCount?: number;
+  onCartClick?: () => void;
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+const Navbar = ({ cartItemCount = 0, onCartClick }: NavbarProps) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
+      setIsMenuOpen(false);
     }
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-card/95 backdrop-blur-md shadow-[var(--shadow-soft)]"
-          : "bg-transparent"
-      }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl sm:text-3xl font-bold bg-[image:var(--gradient-warm)] bg-clip-text text-transparent">
-              KakoMenu
-            </h1>
+            <h1 className="text-2xl font-bold text-primary">MenuDigital</h1>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection("home")}
-              className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+              className="text-foreground hover:text-primary transition-colors"
             >
               Início
             </button>
             <button
               onClick={() => scrollToSection("menu")}
-              className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+              className="text-foreground hover:text-primary transition-colors"
             >
               Cardápio
             </button>
             <button
-              onClick={() => scrollToSection("contact")}
-              className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+              onClick={() => scrollToSection("about")}
+              className="text-foreground hover:text-primary transition-colors"
             >
-              Contato
+              Sobre
             </button>
-            <Button variant="hero" size="default">
-              Fazer Pedido
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative"
+              onClick={onCartClick}
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {cartItemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
             </Button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="relative"
+              onClick={onCartClick}
             >
-              {isMobileMenuOpen ? <X /> : <Menu />}
+              <ShoppingCart className="h-5 w-5" />
+              {cartItemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
             </Button>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-foreground"
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-card/95 backdrop-blur-md border-t border-border animate-fade-in">
-          <div className="px-4 pt-2 pb-4 space-y-2">
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <div className="md:hidden border-t">
+          <div className="px-2 pt-2 pb-3 space-y-1">
             <button
               onClick={() => scrollToSection("home")}
-              className="block w-full text-left px-4 py-3 text-foreground hover:bg-muted rounded-lg transition-colors"
+              className="block w-full text-left px-3 py-2 text-base font-medium text-foreground hover:bg-accent hover:text-primary transition-colors rounded-md"
             >
               Início
             </button>
             <button
               onClick={() => scrollToSection("menu")}
-              className="block w-full text-left px-4 py-3 text-foreground hover:bg-muted rounded-lg transition-colors"
+              className="block w-full text-left px-3 py-2 text-base font-medium text-foreground hover:bg-accent hover:text-primary transition-colors rounded-md"
             >
               Cardápio
             </button>
             <button
-              onClick={() => scrollToSection("contact")}
-              className="block w-full text-left px-4 py-3 text-foreground hover:bg-muted rounded-lg transition-colors"
+              onClick={() => scrollToSection("about")}
+              className="block w-full text-left px-3 py-2 text-base font-medium text-foreground hover:bg-accent hover:text-primary transition-colors rounded-md"
             >
-              Contato
+              Sobre
             </button>
-            <Button variant="hero" size="default" className="w-full">
-              Fazer Pedido
-            </Button>
           </div>
         </div>
       )}

@@ -1,6 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
-import heroImage from "@/assets/hero-food.jpg";
 
 const Hero = () => {
   const scrollToMenu = () => {
@@ -10,45 +8,36 @@ const Hero = () => {
     }
   };
 
-  return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/50 z-10" />
-        <img
-          src={heroImage}
-          alt="Delicious gourmet burger"
-          className="w-full h-full object-cover"
-        />
-      </div>
+  const scrollToHow = () => {
+    const element = document.getElementById("how-it-works");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-      {/* Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 pt-20">
-        <div className="max-w-2xl">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
-            Sabores que{" "}
-            <span className="bg-[image:var(--gradient-warm)] bg-clip-text text-transparent">
-              Conquistam
-            </span>
+  return (
+    <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/10 via-background to-accent/10 pt-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-foreground">
+            Sistema Digital de Pedidos
           </h1>
-          <p className="text-lg sm:text-xl text-muted-foreground mb-8 animate-fade-in [animation-delay:200ms]">
-            Descubra nosso cardápio completo com pratos irresistíveis, feitos com ingredientes
-            frescos e muito amor. Do clássico ao contemporâneo, temos opções para todos os gostos.
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-primary">
+            Cardápio Digital Moderno e Prático
+          </h2>
+          <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Acesse nosso cardápio via QR Code, faça pedidos direto do seu celular e acompanhe o status em tempo real. Experiência única e sem espera!
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in [animation-delay:400ms]">
-            <Button variant="hero" size="lg" onClick={scrollToMenu}>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" onClick={scrollToMenu}>
               Ver Cardápio
-              <ChevronRight className="ml-2" />
             </Button>
-            <Button variant="secondary" size="lg">
-              Fazer Pedido Agora
+            <Button variant="outline" size="lg" onClick={scrollToHow}>
+              Saiba Mais
             </Button>
           </div>
         </div>
       </div>
-
-      {/* Decorative Elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-20" />
     </section>
   );
 };
