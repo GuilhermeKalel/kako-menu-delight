@@ -11,6 +11,18 @@ import baconBurger from "@/assets/bacon-burger.jpg";
 import pizzaPepperoni from "@/assets/pizza-pepperoni.jpg";
 import frangoGrelhado from "@/assets/frango-grelhado.jpg";
 import batataFrita from "@/assets/batata-frita.jpg";
+import veggieBurger from "@/assets/veggie-burger.jpg";
+import xTudo from "@/assets/x-tudo.jpg";
+import pizzaCalabresa from "@/assets/pizza-calabresa.jpg";
+import pizza4Queijos from "@/assets/pizza-4queijos.jpg";
+import pizzaPortuguesa from "@/assets/pizza-portuguesa.jpg";
+import penneMolhoBranco from "@/assets/penne-molho-branco.jpg";
+import espagueteBolonhesa from "@/assets/espaguete-bolonhesa.jpg";
+import lasagna from "@/assets/lasagna.jpg";
+import saladaTropical from "@/assets/salada-tropical.jpg";
+import saladaCaprese from "@/assets/salada-caprese.jpg";
+import onionRings from "@/assets/onion-rings.jpg";
+import chickenWings from "@/assets/chicken-wings.jpg";
 
 export interface MenuItem {
   id: number;
@@ -53,7 +65,7 @@ const menuItems: MenuItem[] = [
     description: "Hambúrguer de grão-de-bico, queijo vegano, rúcula e tomate seco",
     price: 27.90,
     category: "Lanches",
-    image: burgerClassico,
+    image: veggieBurger,
   },
   {
     id: 5,
@@ -61,7 +73,7 @@ const menuItems: MenuItem[] = [
     description: "Hambúrguer, ovo, bacon, presunto, queijo, salada completa",
     price: 35.90,
     category: "Lanches",
-    image: baconBurger,
+    image: xTudo,
   },
   
   // Pizzas
@@ -87,7 +99,7 @@ const menuItems: MenuItem[] = [
     description: "Calabresa artesanal, cebola, mussarela e azeitonas",
     price: 48.00,
     category: "Pizzas",
-    image: pizzaPepperoni,
+    image: pizzaCalabresa,
   },
   {
     id: 9,
@@ -95,7 +107,7 @@ const menuItems: MenuItem[] = [
     description: "Mussarela, gorgonzola, parmesão e provolone",
     price: 55.00,
     category: "Pizzas",
-    image: pizzaMargherita,
+    image: pizza4Queijos,
   },
   {
     id: 10,
@@ -103,7 +115,7 @@ const menuItems: MenuItem[] = [
     description: "Presunto, ovos, cebola, azeitonas e mussarela",
     price: 50.00,
     category: "Pizzas",
-    image: pizzaPepperoni,
+    image: pizzaPortuguesa,
   },
   
   // Massas
@@ -121,7 +133,7 @@ const menuItems: MenuItem[] = [
     description: "Penne com molho branco cremoso, champignon e parmesão",
     price: 36.00,
     category: "Massas",
-    image: pastaCarbonara,
+    image: penneMolhoBranco,
   },
   {
     id: 13,
@@ -129,7 +141,7 @@ const menuItems: MenuItem[] = [
     description: "Espaguete com molho de carne moída, tomate e ervas",
     price: 34.00,
     category: "Massas",
-    image: pastaCarbonara,
+    image: espagueteBolonhesa,
   },
   {
     id: 14,
@@ -137,7 +149,7 @@ const menuItems: MenuItem[] = [
     description: "Lasanha de carne com molho bechamel e queijo gratinado",
     price: 42.00,
     category: "Massas",
-    image: pastaCarbonara,
+    image: lasagna,
   },
   
   // Saladas
@@ -155,7 +167,7 @@ const menuItems: MenuItem[] = [
     description: "Mix de folhas, manga, abacaxi, castanhas e molho de maracujá",
     price: 32.00,
     category: "Saladas",
-    image: saladaCaesar,
+    image: saladaTropical,
   },
   {
     id: 17,
@@ -163,7 +175,7 @@ const menuItems: MenuItem[] = [
     description: "Tomate, mussarela de búfala, manjericão e azeite",
     price: 30.00,
     category: "Saladas",
-    image: saladaCaesar,
+    image: saladaCaprese,
   },
   
   // Porções
@@ -181,7 +193,7 @@ const menuItems: MenuItem[] = [
     description: "Anéis de cebola empanados e crocantes",
     price: 24.00,
     category: "Porções",
-    image: batataFrita,
+    image: onionRings,
   },
   {
     id: 20,
@@ -189,7 +201,7 @@ const menuItems: MenuItem[] = [
     description: "Asinhas de frango com molho barbecue ou buffalo",
     price: 35.00,
     category: "Porções",
-    image: batataFrita,
+    image: chickenWings,
   },
 ];
 

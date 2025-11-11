@@ -51,7 +51,7 @@ const AdminOrders = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/admin/login");
+    navigate("/");
     toast.success("Logout realizado com sucesso!");
   };
 

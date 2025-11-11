@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Minus, Plus, Trash2, X } from "lucide-react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 export interface CartItem {
   id: number;
@@ -20,6 +21,7 @@ interface CartProps {
 
 const Cart = ({ items, onUpdateQuantity, onRemoveItem, onClose, onCheckout }: CartProps) => {
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const navigate = useNavigate();
 
   const handleCheckout = () => {
     if (items.length === 0) {
@@ -43,6 +45,9 @@ const Cart = ({ items, onUpdateQuantity, onRemoveItem, onClose, onCheckout }: Ca
 
     onCheckout();
     toast.success("Pedido finalizado com sucesso!");
+    
+    // Redirecionar para a página de acompanhamento
+    navigate(`/order-tracking?id=${order.id}`);
   };
 
   return (
